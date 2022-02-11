@@ -1,0 +1,59 @@
+section {
+    height: 100%;
+    width: 100%;
+    box-shadow: 1px 1px 10px #1d2638;
+}
+
+.search-container {
+    height: 15%;
+    padding: 1em 0;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-rows: 50% 50%;
+    justify-items: center;
+    align-items: center;
+}
+.sort,
+.search-input {
+    font-weight: 400;
+    font-size: 20px;
+    height: 70%;
+    width: 70%;
+    border: none;
+    padding: 0 1em;
+    outline: 1px solid rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    align-items: center;
+}
+
+.sort {
+    cursor: pointer;
+}
+
+.notes {
+    height: 70%;
+}
+
+.add-note-button-container {
+    height: 15%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-note-button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: normal;
+    color: white;
+    font-weight: 600;
+    font-size: 20px;
+    background: #3fb94b;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 2px #3fb94b;
+    height: 35%;
+    width: 70%;
+}

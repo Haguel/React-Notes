@@ -1,0 +1,107 @@
+main {
+    height: 100%;
+    width: 100%;
+}
+.text-interaction {
+    height: 10%;
+    width: 100%;
+    display: flex;
+}
+
+.text-interaction__font {
+    width: 25%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.font-family-select,
+.font-size-select {
+    height: 40%;
+    padding: 0 0.5em;
+    box-sizing: border-box;
+    font-size: large;
+}
+
+.font-family-select {
+    width: 55%;
+}
+
+.font-size-select {
+    width: 20%;
+}
+
+.font-family:hover,
+.font-size:hover {
+    list-style: none;
+    background: black;
+}
+
+.text-interaction__styles {
+    width: 75%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+}
+.font-style {
+    margin: 0 0.2em;
+    cursor: pointer;
+
+    background: none;
+    border: none;
+    border-radius: 5px;
+}
+
+.font-style--clicked {
+    margin: 0 0.2em;
+    cursor: pointer;
+
+    background: lightgrey;
+    border: none;
+    border-radius: 5px;
+}
+
+.font-style:hover {
+    background: #f2f2f2;
+    transition: background 0.1s ease;
+}
+.note-background {
+    height: 90%;
+    background: #dfdfdf;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.note-container {
+    height: 70%;
+    width: 70%;
+
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 20% 80%;
+}
+
+.note-name,
+.note-text {
+    width: 100%;
+}
+
+.note-name {
+    height: 60%;
+    font-size: 24px;
+    padding: 0 1em;
+    box-sizing: border-box;
+    font-weight: 600;
+}
+.note-text {
+    height: 100%;
+    resize: none;
+    font-size: 18px;
+    padding: 1em;
+    box-sizing: border-box;
+}
