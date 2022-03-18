@@ -2,6 +2,7 @@ import Header from './Components/Header'
 import Menu from './Components/Menu'
 import Main from './Components/Main'
 
+
 import './Styles/app.css'
 
 function App() {
@@ -9,7 +10,7 @@ function App() {
     <>
       <Header />
       <div className='App'>
-        <Menu />
+        <Menu/>
         <Main />
       </div>
     </>

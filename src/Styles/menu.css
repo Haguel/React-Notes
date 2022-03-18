@@ -33,6 +33,27 @@ section {
 
 .notes {
     height: 70%;
+    overflow-y: auto;
+}
+
+.note {
+    width: 100%;
+    height: 15%;
+    box-shadow: 0 1px 0 black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    padding: 0 1em;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+}
+
+.note:hover {
+    background: #d2d4d7;
+    box-shadow: 0 0 0 black;
 }
 
 .add-note-button-container {
@@ -50,7 +71,7 @@ section {
     font-weight: 600;
     font-size: 20px;
     background: #3fb94b;
-    border-radius: 10px;
+    border-radius: 5px;
     border: none;
     cursor: pointer;
     box-shadow: 0 0 2px #3fb94b;

@@ -1,63 +1,76 @@
 import React from 'react'
 import '../Styles/main.css'
-
-import TextColorIcon from '../Images/TextColorIcon.svg'
-import TextBackgroundIcon from '../Images/TextBackgroundIcon.svg'
-import TextBoldIcon from '../Images/TextBoldIcon.svg'
-import TextItalicIcon from '../Images/TextItalicIcon.svg'
-import TextUnderlineIcon from '../Images/TextUnderlineIcon.svg'
+import { useDispatch, useSelector } from 'react-redux'
+import { saveNote } from '../Redux/actions/notes'
 
 export default function Main() {
+  
+  const dispatch = useDispatch()
+  const {items} = useSelector((state) => state);
+  const {activeItemID} = useSelector((state) => state);
+
+  const [note, changeNote] = React.useState({})
+
+  const saveChanges = () => {
+    dispatch(saveNote(note))
+  }
+
+  React.useEffect(() => {
+
+    let noteName = document.querySelector('.note-name')
+    let noteContent = document.querySelector('.note-text')
+
+    let noteObj = {
+      name: items[activeItemID].name,
+      content: items[activeItemID].content,
+    }
+
+    // обновляем данные
+    changeNote(noteObj)
+    noteName.value = noteObj.name
+    noteContent.value = noteContent.name
+    
+    // отправляем в локальный стэйт измененный объект с данными
+    noteName.addEventListener('input', () => {
+      noteObj.name = noteName.value
+      changeNote(noteObj)
+    })
+
+    noteContent.addEventListener('input', () => {
+      noteObj.content = noteContent.value
+      changeNote(noteObj)
+    })
+
+  }, [activeItemID])
   return (
     <main>
-      <div className='text-interaction'>
-        <div className='text-interaction__font'>
-          <select className='font-family-select'>
-            <option className='font-family'>Roboto</option>
-            <option className='font-family'>Arial</option>
-            <option className='font-family'>Verdana</option>
-            <option className='font-family'>Sans-serif</option>
-            <option className='font-family'>Fantasy</option>
-            <option className='font-family'>Sans</option>
-            <option className='font-family'>Italic</option>
-            <option className='font-family'>Paris</option>
-          </select>
-          <select className='font-size-select'>
-            <option className='font-size'>18</option>
-            <option className='font-size'>20</option>
-            <option className='font-size'>24</option>
-            <option className='font-size'>28</option>
-            <option className='font-size'>32</option>
-            <option className='font-size'>36</option>
-            <option className='font-size'>48</option>
-            <option className='font-size'>60</option>
-          </select>
-        </div>
-        <div className='text-interaction__styles'>
-          <button className='font-style--clicked'>
-            <img src={TextColorIcon} />
+      <div className='note-menu'>
+        <div className='note-menu-buttons'>
+          <button className='save-button' onClick={saveChanges}>
+            Сохранить
           </button>
-          <button className='font-style'>
-            <img src={TextBackgroundIcon}/>
-          </button>
-          <button className='font-style'>
-            <img src={TextBoldIcon}/>
-          </button>
-          <button className='font-style'>
-            <img src={TextItalicIcon}/>
-          </button>
-          <button className='font-style'>
-            <img src={TextUnderlineIcon}/>
+          <button className='delete-button'>
+            Удалить
           </button>
         </div>
       </div>
       <div className='note-background'>
         <div className='note-container'>
           <div>
-            <input type='text' className='note-name' placeholder='Название'/>
+            <input 
+            type='text' 
+            className='note-name' 
+            placeholder='Название'
+            />
           </div>
           <div>
-            <textarea type='text' className='note-text' spellCheck='true'> </textarea>
+            <textarea 
+            type='text' 
+            className='note-text' 
+            spellCheck='true'
+            placeholder='Ваш текст'
+            >
+            </textarea>
         </div>
         </div>
       </div>
