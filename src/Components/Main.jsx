@@ -1,7 +1,7 @@
 import React from 'react'
 import '../Styles/main.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { saveNote } from '../Redux/actions/notes'
+import { saveNote, deleteNote } from '../Redux/actions/notes'
 
 export default function Main() {
   
@@ -9,36 +9,37 @@ export default function Main() {
   const {items} = useSelector((state) => state);
   const {activeItemID} = useSelector((state) => state);
 
-  const [note, changeNote] = React.useState({})
+  const [noteName, changeNoteName] = React.useState()
+  const [noteContent, changeNoteContent] = React.useState()
 
   const saveChanges = () => {
-    dispatch(saveNote(note))
+    dispatch(saveNote(noteName, noteContent))
+  }
+
+  const deleteItem = () => {
+    dispatch(deleteNote())
   }
 
   React.useEffect(() => {
-
-    let noteName = document.querySelector('.note-name')
-    let noteContent = document.querySelector('.note-text')
-
-    let noteObj = {
-      name: items[activeItemID].name,
-      content: items[activeItemID].content,
-    }
-
+    let noteNameInput = document.querySelector('.note-name')
+    let noteContentInput = document.querySelector('.note-text')
     // обновляем данные
-    changeNote(noteObj)
-    noteName.value = noteObj.name
-    noteContent.value = noteContent.name
+    changeNoteName(items[activeItemID].name)
+    noteNameInput.value = items[activeItemID].name
+    changeNoteContent(items[activeItemID].content)
+    noteContentInput.value = items[activeItemID].content
     
+    
+    let receivedName, receivedContent
     // отправляем в локальный стэйт измененный объект с данными
-    noteName.addEventListener('input', () => {
-      noteObj.name = noteName.value
-      changeNote(noteObj)
+    noteNameInput.addEventListener('input', () => {
+      receivedName = noteNameInput.value
+      changeNoteName(receivedName)
     })
 
-    noteContent.addEventListener('input', () => {
-      noteObj.content = noteContent.value
-      changeNote(noteObj)
+    noteContentInput.addEventListener('input', () => {
+      receivedContent = noteContentInput.value
+      changeNoteContent(receivedContent)
     })
 
   }, [activeItemID])
@@ -49,7 +50,7 @@ export default function Main() {
           <button className='save-button' onClick={saveChanges}>
             Сохранить
           </button>
-          <button className='delete-button'>
+          <button className='delete-button' onClick={deleteItem}>
             Удалить
           </button>
         </div>

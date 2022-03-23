@@ -3,13 +3,15 @@ main {
     width: 100%;
 }
 .note-menu {
-    height: 10%;
+    height: 8%;
     width: 100%;
     display: flex;
+    border: 1px solid lightgrey;
+    box-sizing: border-box;
 }
 
 .note-menu-buttons {
-    width: 30%;
+    width: 25%;
     height: 100%;
 
     display: flex;
@@ -27,7 +29,7 @@ main {
     font-style: normal;
     font-weight: 600;
     font-size: 17px;
-    border-radius: 5px;
+    border-radius: 3px;
     cursor: pointer;
 }
 
@@ -50,8 +52,8 @@ main {
     transition: background 0.3s;
 }
 .note-background {
-    height: 90%;
-    background: #dfdfdf;
+    height: 92%;
+    background: #ededed;
 
     display: flex;
     justify-content: center;
@@ -59,8 +61,8 @@ main {
 }
 
 .note-container {
-    height: 70%;
-    width: 70%;
+    height: 85%;
+    width: 85%;
 
     display: grid;
     grid-template-columns: 100%;

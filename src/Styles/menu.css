@@ -1,59 +1,123 @@
 section {
     height: 100%;
     width: 100%;
-    box-shadow: 1px 1px 10px #1d2638;
+    border: 1px solid lightgrey;
+    box-sizing: border-box;
 }
-
 .search-container {
     height: 15%;
     padding: 1em 0;
+    border-bottom: 1px solid lightgrey;
     box-sizing: border-box;
+
     display: grid;
     grid-template-rows: 50% 50%;
     justify-items: center;
     align-items: center;
 }
-.sort,
 .search-input {
     font-weight: 400;
     font-size: 20px;
     height: 70%;
-    width: 70%;
+    width: 80%;
     border: none;
     padding: 0 1em;
+    box-sizing: border-box;
     outline: 1px solid rgba(0, 0, 0, 0.5);
 
     display: flex;
     align-items: center;
 }
 
-.sort {
-    cursor: pointer;
-}
-
-.notes {
+.sort-container {
+    position: relative;
+    width: 80%;
     height: 70%;
-    overflow-y: auto;
+    font-weight: 400;
+    font-size: 20px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    align-items: center;
 }
 
-.note {
+.dropdawn-select {
     width: 100%;
-    height: 15%;
-    box-shadow: 0 1px 0 black;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    padding: 0 1em;
+    height: 100%;
+
+    display: grid;
+    grid-template-columns: 75% 25%;
+    justify-items: center;
+    align-items: center;
+}
+.dropdawn-container {
+    position: relative;
+    outline: 1px solid grey;
+    height: 100%;
+    width: 90%;
     box-sizing: border-box;
+    cursor: pointer;
 
     display: flex;
     align-items: center;
 }
 
-.note:hover {
-    background: #d2d4d7;
-    box-shadow: 0 0 0 black;
+.dropdawn-button {
+    display: flex;
+    align-content: center;
+}
+
+.dropdawn {
+    position: absolute;
+    top: 35px;
+    width: 100%;
+    height: 100%;
+    font-weight: 400;
+    font-size: 20px;
+
+    display: grid;
+}
+
+.dropdawn-item,
+.dropdawn-item--active {
+    outline: 1px solid grey;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background-color: white;
+}
+
+.dropdawn-item--active {
+    background-color: #f3f3f3;
+}
+.dropdawn-item:hover {
+    background-color: #f3f3f3;
+}
+.notes {
+    height: 70%;
+    overflow-y: auto;
+}
+
+.note,
+.note--active {
+    width: 100%;
+    height: 15%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    padding: 0 1em;
+    border-bottom: 1px solid gray;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+}
+
+.note--active {
+    background-color: #f1f1f1;
 }
 
 .add-note-button-container {
