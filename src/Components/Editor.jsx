@@ -1,12 +1,12 @@
 import React from 'react'
-import '../Styles/main.css'
+import '../Styles/editor.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { saveNote, deleteNote } from '../Redux/actions/notes'
 
-export default function Main() {
+export default function Editor({items}) {
   
   const dispatch = useDispatch()
-  const {items} = useSelector((state) => state);
+
   const {activeItemID} = useSelector((state) => state);
 
   const [noteName, changeNoteName] = React.useState()
@@ -43,6 +43,10 @@ export default function Main() {
     })
 
   }, [activeItemID])
+
+  React.useEffect(() => {
+    console.log(items)
+  }, [items])
   return (
     <main>
       <div className='note-menu'>

@@ -4,11 +4,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { addNote, setSearchedWord, transferSortType } from '../Redux/actions/notes'
 import Note from './Note'
 
-export default function Menu() {
+export default function Menu({items}) {
 
   const dispatch = useDispatch()
-  const {items} = useSelector((notes) => notes);
-  const {sortTypes} = useSelector((notes) => notes);
+  
+  const {sortTypes} = useSelector((state) => state);
   const {activeItemID} = useSelector((state) => state)
 
   const [activeSortType, setActiveSortType] = React.useState(sortTypes[0])

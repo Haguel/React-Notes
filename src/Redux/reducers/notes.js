@@ -1,11 +1,13 @@
 const initialState = {
     searchedWord: '',
     activeItemID: 0,
+    idCounter: 0, 
     items: [
         {
             name: 'Новая заметка',
             content: '',
-            date: new Date().getTime()
+            date: new Date().getTime(),
+            itemID: 0,
         },
     ],
     sortTypes: [
@@ -24,20 +26,28 @@ const initialState = {
 const notes = (state = initialState, action) => {
     switch(action.type){
         case 'ADD_NOTE':
+            state.idCounter++
+
             let initialNote = {
                 name: 'Новая заметка',
                 content: '',
-                date: new Date().getTime()
+                date: new Date().getTime(),
+                noteID: state.idCounter
             }
+
             return {
                 ...state,
                 items: [...state.items, initialNote],
             };
         case 'DELETE_NOTE': {
             state.items.splice(state.activeItemID, 1)
+            
+            let newActiveItemID = state.activeItemID
+            if(newActiveItemID > 1) newActiveItemID -= 1
+
             return {
                 ...state,
-                activeItemID: state.activeItemID - 1
+                activeItemID: newActiveItemID
             }
         }
         case 'SAVE_NOTE':{

@@ -1,0 +1,41 @@
+.empty-editor-container {
+    background-color: #ededed;
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.empty-editor {
+    height: 10%;
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+}
+
+.no-notes-text,
+.add-note-button--empty {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+}
+.no-notes-text {
+    font-size: 50px;
+}
+
+.add-note-button--empty {
+    font-size: 25px;
+    background: none;
+    border: none;
+    border-bottom: 2px dashed #37a041;
+    color: #37a041;
+    cursor: pointer;
+    padding: 0.1em;
+    box-sizing: border-box;
+}

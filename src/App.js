@@ -1,17 +1,26 @@
 import Header from './Components/Header'
 import Menu from './Components/Menu'
-import Main from './Components/Main'
+import Editor from './Components/Editor'
+import EmptyEditor from './Components/EmptyEditor'
 
 import './Styles/app.css'
 
+import {useSelector} from 'react-redux'
+
 function App() {
+  const {items} = useSelector((state) => state)
+
   return (
     <>
       <Header />
-      <div className='App'>
-        <Menu/>
-        <Main />
-      </div>
+      <main className='app'>
+        <Menu items = {items}/>
+        {
+          items.length >= 1 
+          ? <Editor items = {items}/>
+          : <EmptyEditor />
+        }
+      </main>
     </>
   );
 }
