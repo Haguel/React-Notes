@@ -44,9 +44,6 @@ export default function Editor({items}) {
 
   }, [activeItemID])
 
-  React.useEffect(() => {
-    console.log(items)
-  }, [items])
   return (
     <main>
       <div className='note-menu'>

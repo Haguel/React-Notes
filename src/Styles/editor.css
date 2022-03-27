@@ -88,3 +88,15 @@ main {
     padding: 1em;
     box-sizing: border-box;
 }
+
+@media (max-width: 1400px) {
+    .note-menu-buttons {
+        width: 35%;
+    }
+}
+
+@media (max-width: 1400px) {
+    .note-menu-buttons {
+        width: 50%;
+    }
+}

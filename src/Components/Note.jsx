@@ -15,6 +15,9 @@ export default React.memo(function Note({name, id, activeItemID}) {
         return name.toLowerCase().includes(searchedWord.toLowerCase())
     }
 
+    React.useEffect(() => {
+        console.log(searchedWord)
+    }, [searchedWord])
     return (
         <>
         {

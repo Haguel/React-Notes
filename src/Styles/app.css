@@ -6,3 +6,21 @@
     justify-items: center;
     grid-template-columns: 1fr 4fr;
 }
+
+@media (max-width: 1850px) {
+    .app {
+        grid-template-columns: 1fr 3fr;
+    }
+}
+
+@media (max-width: 1400px) {
+    .app {
+        grid-template-columns: 30% 70%;
+    }
+}
+
+@media (max-width: 1200px) {
+    .app {
+        grid-template-columns: 40% 60%;
+    }
+}
