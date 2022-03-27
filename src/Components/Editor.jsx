@@ -5,6 +5,7 @@ import { saveNote, deleteNote } from '../Redux/actions/notes'
 
 export default function Editor({items}) {
   
+  console.log('test')
   const dispatch = useDispatch()
 
   const {activeItemID} = useSelector((state) => state);
@@ -23,6 +24,7 @@ export default function Editor({items}) {
   React.useEffect(() => {
     let noteNameInput = document.querySelector('.note-name')
     let noteContentInput = document.querySelector('.note-text')
+
     // обновляем данные
     changeNoteName(items[activeItemID].name)
     noteNameInput.value = items[activeItemID].name
@@ -30,16 +32,13 @@ export default function Editor({items}) {
     noteContentInput.value = items[activeItemID].content
     
     
-    let receivedName, receivedContent
     // отправляем в локальный стэйт измененный объект с данными
     noteNameInput.addEventListener('input', () => {
-      receivedName = noteNameInput.value
-      changeNoteName(receivedName)
+      changeNoteName(noteNameInput.value)
     })
 
     noteContentInput.addEventListener('input', () => {
-      receivedContent = noteContentInput.value
-      changeNoteContent(receivedContent)
+      changeNoteContent(noteContentInput.value)
     })
 
   }, [activeItemID])

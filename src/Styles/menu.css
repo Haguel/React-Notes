@@ -3,6 +3,7 @@ section {
     width: 100%;
     border: 1px solid lightgrey;
     box-sizing: border-box;
+    background: white;
 }
 .search-container {
     height: 15%;

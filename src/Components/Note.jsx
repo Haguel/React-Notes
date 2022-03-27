@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setActiveNote } from '../Redux/actions/notes'
-
+ 
 export default React.memo(function Note({name, id, activeItemID}) {
     const dispatch = useDispatch()
     
@@ -15,14 +15,11 @@ export default React.memo(function Note({name, id, activeItemID}) {
         return name.toLowerCase().includes(searchedWord.toLowerCase())
     }
 
-    React.useEffect(() => {
-        console.log(searchedWord)
-    }, [searchedWord])
     return (
         <>
         {
             canBeDisplayed() && (
-                id == activeItemID
+                id == activeItemID 
                 ? <div className='note--active' onClick={notesSwitcher}>
                     {name}
                   </div>

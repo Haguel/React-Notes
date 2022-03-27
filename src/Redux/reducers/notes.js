@@ -1,13 +1,12 @@
 const initialState = {
     searchedWord: '',
     activeItemID: 0,
-    idCounter: 0, 
+    isSelectedItem: true,
     items: [
         {
             name: 'Новая заметка',
             content: '',
             date: new Date().getTime(),
-            itemID: 0,
         },
     ],
     sortTypes: [
@@ -32,21 +31,21 @@ const notes = (state = initialState, action) => {
                 name: 'Новая заметка',
                 content: '',
                 date: new Date().getTime(),
-                noteID: state.idCounter
             }
 
             return {
                 ...state,
                 items: [...state.items, initialNote],
             };
-        case 'DELETE_NOTE': {
-            state.items.splice(state.activeItemID, 1)
-            
-            let newActiveItemID = state.activeItemID
-            if(newActiveItemID > 1) newActiveItemID -= 1
+            case 'DELETE_NOTE': {
+                state.items.splice(state.activeItemID, 1)     
 
+                let newActiveItemID = state.activeItemID
+                newActiveItemID = -1
+                
             return {
                 ...state,
+                isSelectedItem: false,
                 activeItemID: newActiveItemID
             }
         }
@@ -63,6 +62,7 @@ const notes = (state = initialState, action) => {
             return{
                 ...state,
                 activeItemID: action.payload,
+                isSelectedItem: true,
             }
         }
         case 'SET_SEARCHED_WORD':{
