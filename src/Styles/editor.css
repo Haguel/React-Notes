@@ -101,3 +101,22 @@ main {
         width: 50%;
     }
 }
+
+@media (max-width: 900px) {
+    .note-menu {
+        height: 10%;
+    }
+
+    .note-menu-buttons {
+        width: 100%;
+    }
+
+    .note-background {
+        height: 90%;
+    }
+
+    .save-button,
+    .delete-button {
+        height: 60%;
+    }
+}

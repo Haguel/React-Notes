@@ -28,3 +28,10 @@ body {
         grid-template-columns: 40% 60%;
     }
 }
+
+@media (max-width: 900px) {
+    .app {
+        grid-template-columns: 100%;
+        grid-template-rows: 35% 65%;
+    }
+}

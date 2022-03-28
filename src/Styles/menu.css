@@ -111,7 +111,7 @@ section {
     font-weight: 600;
     font-size: 20px;
     padding: 0 1em;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid lightgrey;
     box-sizing: border-box;
     cursor: pointer;
 
@@ -138,10 +138,43 @@ section {
     font-weight: 600;
     font-size: 20px;
     background: #3fb94b;
-    border-radius: 5px;
+    border-radius: 3px;
     border: none;
     cursor: pointer;
     box-shadow: 0 0 2px #3fb94b;
     height: 35%;
     width: 70%;
+}
+
+@media (max-width: 900px) {
+    .search-container {
+        height: 40%;
+        padding: 0.5em 0;
+    }
+
+    .search-input {
+        height: 90%;
+    }
+    .sort-container {
+        height: 100%;
+    }
+
+    .notes {
+        height: 42%;
+    }
+
+    .note,
+    .note--active {
+        height: 45%;
+    }
+
+    .add-note-button {
+        height: 60%;
+        width: 50%;
+        font-size: 18px;
+    }
+
+    .add-note-button-container {
+        height: 18.5%;
+    }
 }
