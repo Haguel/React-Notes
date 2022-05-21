@@ -1,8 +1,10 @@
 import React from 'react'
-import '../Styles/menu.css'
 import { useSelector, useDispatch, shallowEqual } from 'react-redux'
+
 import { addNote, setSearchedWord, transferSortType } from '../Redux/actions/notes'
 import Note from './Note'
+
+import '../Styles/menu.css'
 
 export default function Menu({items}) {
 
@@ -26,13 +28,13 @@ export default function Menu({items}) {
   } 
 
   const setSelectVisibility = () => {
-    arrow == '▼' 
+    arrow === '▼' 
     ? changeArrow('▲') 
     : changeArrow('▼')
   }
 
   const handleOutsideClick = (e) => {
-      if(!(e.target.closest('div') == dropDawn.current) && !(e.target.closest('div') == dropDawnContainer.current)){
+      if(!(e.target.closest('div') === dropDawn.current) && !(e.target.closest('div') === dropDawnContainer.current)){
         changeArrow('▼')
       }
   }
@@ -61,7 +63,7 @@ export default function Menu({items}) {
                     </span>
                     <div className='dropdawn' ref={dropDawn}>
                       {
-                        arrow == '▲' && sortTypes.map((sortType, id) => (
+                        arrow === '▲' && sortTypes.map((sortType, id) => (
                           <span className={sortType.isActive ? "dropdawn-item--active" : "dropdawn-item"}
                             key={id} 
                             onClick={() => getSortType(id)}>

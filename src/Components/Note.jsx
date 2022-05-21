@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
 import { setActiveNote } from '../Redux/actions/notes'
  
 export default React.memo(function Note({name, id, activeItemID}) {
@@ -19,7 +20,7 @@ export default React.memo(function Note({name, id, activeItemID}) {
         <>
         {
             canBeDisplayed() && (
-                id == activeItemID 
+                id === activeItemID 
                 ? <div className='note--active' onClick={notesSwitcher}>
                     {name}
                   </div>

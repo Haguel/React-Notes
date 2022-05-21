@@ -38,8 +38,8 @@ const notes = (state = initialState, action) => {
             return 0
         }
 
-        if(sortType == 'alphabet') arr.sort(sortAlphabet)
-        else if(sortType == 'date') arr.sort(sortDate)
+        if(sortType === 'alphabet') arr.sort(sortAlphabet)
+        else if(sortType === 'date') arr.sort(sortDate)
     }
     
     switch(action.type){
@@ -109,7 +109,6 @@ const notes = (state = initialState, action) => {
             let activeItem = state.items[state.activeItemID]
             let newSortTypes = state.sortTypes
              
-            
             newSortTypes.forEach((sortType, id) => {
                 if(id === action.payload) {
                     sortType.isActive = true

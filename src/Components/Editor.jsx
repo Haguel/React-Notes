@@ -1,7 +1,9 @@
 import React from 'react'
-import '../Styles/editor.css'
 import { useDispatch, useSelector } from 'react-redux'
+
 import { saveNote, deleteNote } from '../Redux/actions/notes'
+
+import '../Styles/editor.css'
 
 export default function Editor({items}) {
   const dispatch = useDispatch()

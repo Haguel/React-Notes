@@ -1,9 +1,9 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+
+import { addNote } from '../Redux/actions/notes'
 
 import '../Styles/empty-editor.css'
-
-import { useDispatch } from 'react-redux'
-import { addNote } from '../Redux/actions/notes'
 
 export default function EmptyEditor() {
     const dispatch = useDispatch()
