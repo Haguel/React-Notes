@@ -11,22 +11,39 @@ const initialState = {
     ],
     sortTypes: [
         {
-            name: 'Новизне',
+            title: 'Новизне',
             type: 'date',
+            isActive: true,
         },
         {
-            name: 'Алфавиту',
-            type: 'alphabet'
+            title: 'Алфавиту',
+            type: 'alphabet',
+            isActive: false,
         }
     ],
+    activeSortTypeTitle: "Новизне"
 }
 
 
 const notes = (state = initialState, action) => {
+    const sortItems = (arr, sortType) => {
+        const sortAlphabet = (a, b) => {
+            if(a.name.toUpperCase() < b.name.toUpperCase()) return -1
+            if(a.name.toUpperCase() > b.name.toUpperCase()) return 1
+            return 0
+        }
+        const sortDate = (a, b) => {
+            if(a.date < b.date) return -1
+            if(a.date > b.date) return 1
+            return 0
+        }
+
+        if(sortType == 'alphabet') arr.sort(sortAlphabet)
+        else if(sortType == 'date') arr.sort(sortDate)
+    }
+    
     switch(action.type){
         case 'ADD_NOTE':
-            state.idCounter++
-
             let initialNote = {
                 name: 'Новая заметка',
                 content: '',
@@ -37,12 +54,12 @@ const notes = (state = initialState, action) => {
                 ...state,
                 items: [...state.items, initialNote],
             };
-            case 'DELETE_NOTE': {
-                state.items.splice(state.activeItemID, 1)     
+        case 'DELETE_NOTE': {
+            state.items.splice(state.activeItemID, 1)     
 
-                let newActiveItemID = state.activeItemID
-                newActiveItemID = -1
-                
+            let newActiveItemID = state.activeItemID
+            newActiveItemID = -1
+            
             return {
                 ...state,
                 isSelectedItem: false,
@@ -50,12 +67,27 @@ const notes = (state = initialState, action) => {
             }
         }
         case 'SAVE_NOTE':{
+            let newActiveItemID
+            let activeItem = state.items[state.activeItemID]
             let newItems = state.items
+
             newItems[state.activeItemID].name = action.payload.name
             newItems[state.activeItemID].content = action.payload.content
+
+            // Делаем заново сортировку
+            state.sortTypes.forEach((sortType) => {
+                if(sortType.isActive) sortItems(newItems, sortType.type)
+            })
+
+            newItems.forEach((obj, id) => {
+                if(JSON.stringify(obj) === JSON.stringify(activeItem)){
+                    newActiveItemID = id
+                } 
+            })
             return {
                 ...state,
                 items: newItems,
+                activeItemID: newActiveItemID,
             };
         }
         case 'SET_ACTIVE_NOTE':{
@@ -71,38 +103,32 @@ const notes = (state = initialState, action) => {
                 searchedWord: action.payload,
             }
         }
-        case 'SET_SORT_TYPE': {
-            let newItems 
+        case 'SORT_ITEMS': {
             let newActiveItemID
+            let newActiveSortTypeTitle
             let activeItem = state.items[state.activeItemID]
-
-            if(action.payload == 'alphabet'){
-                const sortAlphabet = (a, b) => {
-                    if(a.name < b.name) return -1
-                    if(a.name > b.name) return 1
-                    return 0
-                }
-
-                newItems = state.items.sort(sortAlphabet)
-            } else if(action.payload == 'date'){
-                const sortDate = (a, b) => {
-                    if(a.date < b.date) return -1
-                    if(a.date > b.date) return 1
-                    return 0
-                }
-
-                newItems = state.items.sort(sortDate)
-            } 
+            let newSortTypes = state.sortTypes
+             
             
-            newItems.forEach((obj, id) => {
+            newSortTypes.forEach((sortType, id) => {
+                if(id === action.payload) {
+                    sortType.isActive = true
+                    newActiveSortTypeTitle = sortType.title
+                    sortItems(state.items, sortType.type)
+                }
+                else sortType.isActive = false
+            })
+
+            state.items.forEach((obj, id) => {
                 if(JSON.stringify(obj) === JSON.stringify(activeItem)){
                     newActiveItemID = id
                 } 
             })
             return{
                 ...state,
-                items: newItems,
                 activeItemID: newActiveItemID,
+                sortTypes: newSortTypes,
+                activeSortTypeTitle: newActiveSortTypeTitle
             }
         }
         default:

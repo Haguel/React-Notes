@@ -1,19 +1,15 @@
 import React from 'react'
 import '../Styles/menu.css'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch, shallowEqual } from 'react-redux'
 import { addNote, setSearchedWord, transferSortType } from '../Redux/actions/notes'
 import Note from './Note'
 
 export default function Menu({items}) {
 
   const dispatch = useDispatch()
-  
-  const {sortTypes} = useSelector((state) => state);
-  const {activeItemID} = useSelector((state) => state)
-
-  const [activeSortType, setActiveSortType] = React.useState(sortTypes[0])
+  const {sortTypes, activeItemID, activeSortTypeTitle} = useSelector((state) => state, shallowEqual);
+  console.log(sortTypes)
   const [arrow, changeArrow] = React.useState('▼')
-
   const dropDawn = React.useRef(null)
   const dropDawnContainer = React.useRef(null)
 
@@ -26,8 +22,7 @@ export default function Menu({items}) {
   }
      
   const getSortType = (id) => {
-    setActiveSortType(sortTypes[id])
-    dispatch(transferSortType(sortTypes[id].type))
+    dispatch(transferSortType(id))
   } 
 
   const setSelectVisibility = () => {
@@ -61,19 +56,17 @@ export default function Menu({items}) {
                   </span>
                   <div className='dropdawn-container' onClick={setSelectVisibility} ref={dropDawnContainer}>
                     <span className='dropdawn-select'>
-                      <span className='active-sort-type'>{activeSortType.name}</span>
+                      <span className='active-sort-type'>{activeSortTypeTitle}</span>
                       <span className='dropdawn-arrow'>{arrow}</span>
                     </span>
                     <div className='dropdawn' ref={dropDawn}>
                       {
                         arrow == '▲' && sortTypes.map((sortType, id) => (
-                          sortType.name == activeSortType.name
-                          ? <span className='dropdawn-item--active'
+                          <span className={sortType.isActive ? "dropdawn-item--active" : "dropdawn-item"}
                             key={id} 
-                            onClick={() => getSortType(id)}>{sortType.name}</span>
-                          : <span className='dropdawn-item'
-                            key={id} 
-                            onClick={() => getSortType(id)}>{sortType.name}</span>
+                            onClick={() => getSortType(id)}>
+                              {sortType.title}
+                            </span>
                         ))
                       }
                     </div>

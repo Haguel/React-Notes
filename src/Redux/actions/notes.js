@@ -25,6 +25,6 @@ export const setSearchedWord = (word) => ({
 })
 
 export const transferSortType = (id) => ({
-    type: 'SET_SORT_TYPE',
+    type: 'SORT_ITEMS',
     payload: id,
 })

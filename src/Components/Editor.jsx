@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { saveNote, deleteNote } from '../Redux/actions/notes'
 
 export default function Editor({items}) {
-  
-  console.log('test')
   const dispatch = useDispatch()
 
   const {activeItemID} = useSelector((state) => state);
