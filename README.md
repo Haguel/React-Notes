@@ -3,7 +3,7 @@ In this react app I made simple todo app where user can add, edit, remove notes.
 
 ## How to start
 
-### `git clone https://github.com/TsugaruBurst/React-Notes.git`
+### `git clone https://github.com/Haguel/React-Notes.git`
 ### `cd React-Notes`
 ### `npm install`
 ### `npm run start`
